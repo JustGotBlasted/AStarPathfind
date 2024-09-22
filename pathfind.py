@@ -2,14 +2,14 @@ from node import Node
 import pygame as p
 import random
 
-LENGTH = 400
+LENGTH = 200
 HEIGHT = 400
 X = 10
 Y = 20
 
 def main():
     p.init()
-    screen = p.display.set_mode((LENGTH, LENGTH))
+    screen = p.display.set_mode((LENGTH, HEIGHT))
     p.display.set_caption("A*")
     time = p.time.Clock()
 
