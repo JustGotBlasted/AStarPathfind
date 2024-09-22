@@ -2,9 +2,10 @@ from node import Node
 import pygame as p
 import random
 
-LENGTH = HEIGHT = 400
+LENGTH = 400
+HEIGHT = 400
 X = 10
-Y = 10
+Y = 20
 
 def main():
     p.init()
