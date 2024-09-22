@@ -3,8 +3,8 @@ import pygame as p
 import random
 
 LENGTH = HEIGHT = 400
-X = 40
-Y = 40
+X = 10
+Y = 10
 
 def main():
     p.init()
@@ -22,7 +22,7 @@ def main():
             grid[y].append(n)
     
     start = (0, 0)
-    end = (39, 39)
+    end = (X - 1, Y - 1)
 
 
     calculated = False
@@ -74,6 +74,10 @@ def main():
                                     n.traversable = False
                                 else:
                                     n.traversable = True
+                    
+                    open = []
+                    closed = []
+                    path = []
 
 
         
