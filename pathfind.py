@@ -2,7 +2,7 @@ from node import Node
 import pygame as p
 import random
 
-LENGTH = HEIGHT = 800
+LENGTH = HEIGHT = 400
 X = 40
 Y = 40
 
@@ -64,7 +64,6 @@ def main():
                     closed = []
                     path = []
                 elif e.key == p.K_SPACE: # Pathfinds
-                    print("pathfind")
                     open, closed, path = pathfind(screen, time, grid, start, end)
                     calculated = True
                 elif e.key == p.K_r: # Randomize maze
@@ -109,26 +108,21 @@ def pathfind(screen, time, grid, start, end):
         open.remove(current)
         closed.append(current)
 
-        #print("open:",open)
-        #print("closed:",closed)
 
         directions = [(0, 1), (1, 0), (0, -1), (-1, 0), (1, 1), (-1, -1), (1, -1), (-1, 1)]
         availableDirs = []
 
         for dir in directions:
             coord = (dir[0] + current.position[0], dir[1] + current.position[1])
-            print("coord: ", coord)
 
             if 0 <= coord[0] < X and 0 <= coord[1] < Y:
                 neighbor = grid[coord[1]][coord[0]]
-                print(neighbor)
 
                 if not neighbor.traversable or neighbor in closed:
-                    print("Cant traverse", neighbor)
                     continue
 
 
-                if (abs(dir[0]) == 1 and abs(dir[1]) == 1) and not ((abs(dir[0]), 0) in availableDirs or (0, abs(dir[1])) in availableDirs): # Don't move diagonally if both adjacent nodes are not traversable
+                if (abs(dir[0]) == 1 and abs(dir[1]) == 1) and not ((dir[0], 0) in availableDirs or (0, dir[1]) in availableDirs): # Don't move diagonally if both adjacent nodes are not traversable
                     continue
 
 
@@ -148,7 +142,6 @@ def pathfind(screen, time, grid, start, end):
                     neighbor.parent = current
                     neighbor.gcost = current.gcost + (14 if abs(dir[0]) == 1 and abs(dir[1]) == 1 else 10)
 
-                    #print("append")
                     open.append(neighbor)
                 
                 availableDirs.append(dir)
